@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Vuex官方例子解读 | Damao Bolg | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="Vuex">
+  <meta name="description" content="安装123npm i vuexoryarn add vuex  Vuex 是什么 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。 它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  核心概念 State   单一状态树，用一个对象就包含了全部的应用层级状态   Getter   相当于 State 的计算属性   Mutation">
+<meta name="keywords" content="Vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex官方例子解读">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;Vuex%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90%E8%A7%A3%E8%AF%BB&#x2F;index.html">
+<meta property="og:site_name" content="Damao Bolg">
+<meta property="og:description" content="安装123npm i vuexoryarn add vuex  Vuex 是什么 Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。 它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。  核心概念 State   单一状态树，用一个对象就包含了全部的应用层级状态   Getter   相当于 State 的计算属性   Mutation">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-05-14T03:29:52.192Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Damao Bolg" type="application/atom+xml">
+  
+  <meta name="summary" content="复制粘贴攻城狮">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off" target="">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="https://github.com/Damao2250" target="_blank" rel="noopener" class="avatar"><img src="https://avatars.githubusercontent.com/damao2250"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Damao</h5>
+        <a href="mailto:damao2250@gmail.com" target="_blank" rel="noopener" title="damao2250@gmail.com" class="mail">damao2250@gmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/Damao2250" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://weibo.com/damao2250" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Damao Bolg &copy; 2020</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Vuex官方例子解读</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search" target="">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share" target="">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Vuex官方例子解读</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-11-13T07:19:29.000Z" itemprop="datePublished" class="page-time">
+  2019-11-13
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-Vuex官方例子解读" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vuex/" rel="tag">Vuex</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vuex-是什么"><span class="post-toc-number">2.</span> <span class="post-toc-text">Vuex 是什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#核心概念"><span class="post-toc-number">3.</span> <span class="post-toc-text">核心概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#官方购物车项目结构"><span class="post-toc-number">4.</span> <span class="post-toc-text">官方购物车项目结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#注意点"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">注意点</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i vuex</span><br><span class="line">or</span><br><span class="line">yarn add vuex</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="Vuex-是什么"><a href="#Vuex-是什么" class="headerlink" title="Vuex 是什么"></a>Vuex 是什么</h2><ul>
+<li><code>Vuex</code> 是一个专为 <code>Vue.js</code> 应用程序开发的状态管理模式。</li>
+<li>它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。</li>
+</ul>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><ol>
+<li><code>State</code></li>
+</ol>
+<ul>
+<li>单一状态树，用一个对象就包含了全部的应用层级状态</li>
+</ul>
+<ol start="2">
+<li><code>Getter</code></li>
+</ol>
+<ul>
+<li>相当于 <code>State</code> 的计算属性</li>
+</ul>
+<ol start="3">
+<li><code>Mutation</code></li>
+</ol>
+<ul>
+<li>提交 <code>mutation</code>是更改 <code>store</code> 中状态的唯一方法, 相当于事件</li>
+</ul>
+<ol start="4">
+<li><code>Action</code></li>
+</ol>
+<ul>
+<li>类似于 <code>mutation</code>, 但 <code>Action</code> 提交的是 <code>mutation</code>，而不是直接变更状态，而且可以包含任意异步操作</li>
+</ul>
+<ol start="5">
+<li><code>Module</code></li>
+</ol>
+<ul>
+<li>将 <code>store</code> 分割成模块（module）。每个模块拥有自己的 <code>state、mutation、action、getter</code></li>
+</ul>
+<h2 id="官方购物车项目结构"><a href="#官方购物车项目结构" class="headerlink" title="官方购物车项目结构"></a>官方购物车项目结构</h2><figure class="highlight"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">├── index.html</span><br><span class="line">├── main.js</span><br><span class="line">├── api</span><br><span class="line">│   └── ... # 抽取出API请求</span><br><span class="line">├── components</span><br><span class="line">│   ├── App.vue</span><br><span class="line">│   └── ...</span><br><span class="line">└── store</span><br><span class="line">    ├── index.js          # 我们组装模块并导出 store 的地方</span><br><span class="line">    ├── actions.js        # 根级别的 action</span><br><span class="line">    ├── mutations.js      # 根级别的 mutation</span><br><span class="line">    └── modules</span><br><span class="line">        ├── cart.js       # 购物车模块</span><br><span class="line">        └── products.js   # 产品模块</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><ol>
+<li></li>
+</ol>
+<ul>
+<li>在 <code>mutation-types.js</code> 中定义类型常量，默认全部大写 —&gt; 把常量放在单独的文件中可以让你的代码合作者或者迭代者对整个 app 包含的 mutation 一目了然</li>
+</ul>
+<ol start="2">
+<li>Vuex- Action的 { commit }<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Vuex 中 使用 Action 处理异步请求时，常规写法如下</span></span><br><span class="line">getMenuAction:<span class="function">(<span class="params">context</span>) =&gt;</span>{</span><br><span class="line">    context.commit(<span class="string">'SET_MENU_LIST'</span>,[<span class="string">'承保2'</span>,<span class="string">'核保2'</span>])</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 我们也可以使用如下简化写法，如下</span></span><br><span class="line">actions:{</span><br><span class="line">  getMenuAction:<span class="function">(<span class="params">{commit}</span>) =&gt;</span>{</span><br><span class="line">      commit(<span class="string">'SET_MENU_LIST'</span>,[<span class="string">'承保2'</span>,<span class="string">'核保2'</span>])</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// { commit } 是变量解构赋值</span></span><br><span class="line">context = { <span class="attr">dispatch</span>: local.dispatch,</span><br><span class="line">            commit: local.commit,</span><br><span class="line">            getters: local.getters,</span><br><span class="line">            state: local.state,</span><br><span class="line">            rootGetters: store.getters,</span><br><span class="line">            rootState: store.state</span><br><span class="line">            }</span><br><span class="line"><span class="comment">// 常规写法 context.commit = context.local.commit</span></span><br><span class="line"><span class="comment">// 使用变量解构赋值后 { commit } 相当于 commit= context.commit</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// state 同理</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light" target="">赞赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://yoursite.com/2019/11/13/Vuex%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90%E8%A7%A3%E8%AF%BB/" target="_blank" rel="external">http://yoursite.com/2019/11/13/Vuex%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90%E8%A7%A3%E8%AF%BB/</a>
+                </p>
+                <footer><cite><a href="http://yoursite.com">@Damao Bolg</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/11/26/vue%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BC%98%E5%8C%96/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">vue的一些优化</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/11/13/PicGo-Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PicGo+Github搭建图床</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Vuex官方例子解读" data-title="Vuex官方例子解读" data-url="http://yoursite.com/2019/11/13/Vuex%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90%E8%A7%A3%E8%AF%BB/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;" target=""><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Thanks~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "Vuex官方例子解读",
+    pic: "https://avatars.githubusercontent.com/damao2250",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/2019/11/13/Vuex%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90%E8%A7%A3%E8%AF%BB/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

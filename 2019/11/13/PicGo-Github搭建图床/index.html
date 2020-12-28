@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>PicGo+Github搭建图床 | Damao Bolg | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="GitHub">
+  <meta name="description" content="图床是什么   图床,是专门储存图片的空间,同时允许你为图片创建链接的网上空间   图床可以干什么   使用Markdown写作用到图片时，不可避免的就要用到图床，可以方便快捷的使用图片链接，在自己博客中插入的图片链接就可以随时随地在线预览了，并且不会因为任何意外原因无法查看   搭建一个简易的图床 （PicGo + Github）   下载PicGo：[https:&#x2F;&#x2F;github.com&#x2F;M">
+<meta name="keywords" content="GitHub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PicGo+Github搭建图床">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;13&#x2F;PicGo-Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A&#x2F;index.html">
+<meta property="og:site_name" content="Damao Bolg">
+<meta property="og:description" content="图床是什么   图床,是专门储存图片的空间,同时允许你为图片创建链接的网上空间   图床可以干什么   使用Markdown写作用到图片时，不可避免的就要用到图床，可以方便快捷的使用图片链接，在自己博客中插入的图片链接就可以随时随地在线预览了，并且不会因为任何意外原因无法查看   搭建一个简易的图床 （PicGo + Github）   下载PicGo：[https:&#x2F;&#x2F;github.com&#x2F;M">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;%E4%B8%8B%E8%BD%BD1.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;%E4%B8%8B%E8%BD%BD2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;%E8%AE%BE%E7%BD%AE.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;%E8%AE%BE%E7%BD%AE1.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;%E8%AE%BE%E7%BD%AE3.jpg">
+<meta property="og:updated_time" content="2020-05-14T03:29:19.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;%E4%B8%8B%E8%BD%BD1.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Damao Bolg" type="application/atom+xml">
+  
+  <meta name="summary" content="复制粘贴攻城狮">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off" target="">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="https://github.com/Damao2250" target="_blank" rel="noopener" class="avatar"><img src="https://avatars.githubusercontent.com/damao2250"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Damao</h5>
+        <a href="mailto:damao2250@gmail.com" target="_blank" rel="noopener" title="damao2250@gmail.com" class="mail">damao2250@gmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/Damao2250" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://weibo.com/damao2250" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Damao Bolg &copy; 2020</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PicGo+Github搭建图床</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search" target="">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share" target="">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">PicGo+Github搭建图床</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-11-13T01:15:42.000Z" itemprop="datePublished" class="page-time">
+  2019-11-13
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-PicGo-Github搭建图床" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <ol>
+<li>图床是什么</li>
+</ol>
+<ul>
+<li>图床,是专门储存图片的空间,同时允许你为图片创建链接的网上空间</li>
+</ul>
+<ol start="2">
+<li>图床可以干什么</li>
+</ol>
+<ul>
+<li>使用Markdown写作用到图片时，不可避免的就要用到图床，可以方便快捷的使用图片链接，在自己博客中插入的图片链接就可以随时随地在线预览了，并且不会因为任何意外原因无法查看</li>
+</ul>
+<ol start="3">
+<li>搭建一个简易的图床 （PicGo + Github）</li>
+</ol>
+<ul>
+<li>下载PicGo：[<a href="https://github.com/Molunerfinn/PicGo" target="_blank" rel="noopener">https://github.com/Molunerfinn/PicGo</a> ]</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Damao2250/FileTransfer/master/%E4%B8%8B%E8%BD%BD1.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Damao2250/FileTransfer/master/%E4%B8%8B%E8%BD%BD2.jpg" alt=""></p>
+<ol start="4">
+<li>创建一个公开仓库，</li>
+</ol>
+<ul>
+<li>创建一个公开仓库，点击右上角的个人头像出现下拉菜单，然后点倒数第二项 设置（英文版为 Setting），然后点左侧菜单的最后一个 Developer setting，然后再点左侧菜单的最后一个 Personal access tokens，然后在右侧有一个 Generate new token 的按钮，点击它，然后选择 repo，然后直接拉到最下面点击绿色的按钮 Generate token。之后会生成一个 token 码 ，需要注意的是这个 token 只显示一次！所以可以先把他复制保存的其他地方。其余三项不用填，直接确定然后设为默认图床即可</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Damao2250/FileTransfer/master/%E8%AE%BE%E7%BD%AE.jpg" alt=""></p>
+<ol start="5">
+<li>使用</li>
+</ol>
+<ul>
+<li>把保存的图片拖到上传区的虚线框里或者直接点击上传即可。提示上传成功之后即可在相册的那栏里看到上传的照片，然后点对应图片下面的文本框似的按钮就可以直接复制外链地址然后粘贴到想要显示图片的地方就可以了</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Damao2250/FileTransfer/master/%E8%AE%BE%E7%BD%AE1.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/Damao2250/FileTransfer/master/%E8%AE%BE%E7%BD%AE3.jpg" alt=""></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light" target="">赞赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://yoursite.com/2019/11/13/PicGo-Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/" target="_blank" rel="external">http://yoursite.com/2019/11/13/PicGo-Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/</a>
+                </p>
+                <footer><cite><a href="http://yoursite.com">@Damao Bolg</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/11/13/Vuex%E5%AE%98%E6%96%B9%E4%BE%8B%E5%AD%90%E8%A7%A3%E8%AF%BB/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vuex官方例子解读</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/11/13/%E4%BD%BF%E7%94%A8Taro%E5%AE%9E%E7%8E%B0%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用Taro实现微信小程序登录流程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="PicGo-Github搭建图床" data-title="PicGo+Github搭建图床" data-url="http://yoursite.com/2019/11/13/PicGo-Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;" target=""><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Thanks~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "PicGo+Github搭建图床",
+    pic: "https://avatars.githubusercontent.com/damao2250",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/2019/11/13/PicGo-Github%E6%90%AD%E5%BB%BA%E5%9B%BE%E5%BA%8A/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

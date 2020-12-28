@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>React-Router的使用 | Damao Bolg | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="React">
+  <meta name="description" content="1. 使用 react-router 还是 react-router-dom ？React-router  React Router 包含3个库, react-router、react-router-dom、和 react-router-native。react-router 提供最基本的路由功能，实际使用，我们不会直接安装 react-router,而是根据应用运行的环境选择安装 react-r">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Router的使用">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;11&#x2F;React-Router%E7%9A%84%E4%BD%BF%E7%94%A8&#x2F;index.html">
+<meta property="og:site_name" content="Damao Bolg">
+<meta property="og:description" content="1. 使用 react-router 还是 react-router-dom ？React-router  React Router 包含3个库, react-router、react-router-dom、和 react-router-native。react-router 提供最基本的路由功能，实际使用，我们不会直接安装 react-router,而是根据应用运行的环境选择安装 react-r">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-05-14T03:29:39.419Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Damao Bolg" type="application/atom+xml">
+  
+  <meta name="summary" content="复制粘贴攻城狮">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off" target="">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="https://github.com/Damao2250" target="_blank" rel="noopener" class="avatar"><img src="https://avatars.githubusercontent.com/damao2250"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Damao</h5>
+        <a href="mailto:damao2250@gmail.com" target="_blank" rel="noopener" title="damao2250@gmail.com" class="mail">damao2250@gmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/Damao2250" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://weibo.com/damao2250" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Damao Bolg &copy; 2020</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">React-Router的使用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search" target="">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share" target="">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">React-Router的使用</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2019-11-11T01:37:32.000Z" itemprop="datePublished" class="page-time">
+  2019-11-11
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-React-Router的使用" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-使用-react-router-还是-react-router-dom-？"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 使用 react-router 还是 react-router-dom ？</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="1-使用-react-router-还是-react-router-dom-？"><a href="#1-使用-react-router-还是-react-router-dom-？" class="headerlink" title="1. 使用 react-router 还是 react-router-dom ？"></a>1. 使用 <code>react-router</code> 还是 <code>react-router-dom</code> ？</h2><p>React-router</p>
+<ul>
+<li><p><code>React Router</code> 包含3个库, <code>react-router</code>、<code>react-router-dom</code>、和 <code>react-router-native</code>。<code>react-router</code> 提供最基本的路由功能，实际使用，我们不会直接安装 <code>react-router</code>,而是根据应用运行的环境选择安装 <code>react-router-dom</code>(在浏览器中使用)或 <code>react-router-native</code>(在 <code>react-native</code>中使用)。<code>react-router-dom</code> 和 <code>react-router-native</code> 都依赖 <code>react-router</code>,所以在安装时， <code>react-router</code> 也会自动安装。<br>两者的关系</p>
+<ul>
+<li><code>react-router</code>：提供 router 的核心api。如 <code>Router、Route、Switch</code> 等，没有提供有关dom操作进行路由跳转的api</li>
+<li><code>react-router-dom</code>：提供 <code>BrowserRouter、Route、Link</code>等api，可以通过dom操作控制路由</li>
+<li><code>react-router-dom</code>：基于 <code>react-router</code>，加入了在浏览器运行环境下的一些功能，例如：<code>Link</code> 组件，会渲染一个 <code>a</code> 标签，<code>Link</code> 组件源码a标签行; <code>BrowserRouter</code>和<code>HashRouter</code> 组件，前者使用 <code>pushState</code> 和 <code>popState</code> 事件构建路由，后者使用 <code>window.location.hash</code> 和 <code>hashchange</code> 事件构建路由。</li>
+<li><code>react-router-dom</code> 里包含了 <code>react-router</code> 的依赖，因此只需要安装后者即可</li>
+</ul>
+<p>使用</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i react-router-dom</span><br><span class="line">or</span><br><span class="line">yarn add react-router-dom</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<p>简易使用示例</p>
+<p>1.新建一个 <code>router/index.js</code> 文件</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  router/index.js</span></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入一些模块</span></span><br><span class="line"><span class="keyword">import</span> { BrowserRouter <span class="keyword">as</span> Router, Route, Redirect } <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//引入需要用到的页面组件 </span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./../views/home/home'</span></span><br><span class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./../views/about/about'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">router</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="comment">// Route 路由</span></span><br><span class="line">    <span class="comment">// Redirect 重定向</span></span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">      &lt;Route path=<span class="string">"/home"</span> component={Home} /&gt;</span><br><span class="line">      &lt;Route path=<span class="string">"/"</span> render={</span><br><span class="line">        () =&gt; <span class="xml"><span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">"/home"</span> /&gt;</span>}&gt;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span></span><br><span class="line">      &lt;Route path=<span class="string">"/about"</span> component={About}&gt;<span class="xml"><span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span></span><br><span class="line">    &lt;<span class="regexp">/Router&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">}</span></span><br><span class="line"><span class="regexp">export default router</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>2.home组件</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//home.js</span></span><br><span class="line"><span class="keyword">import</span> React, { Component } <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> { Link } <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Home</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>{</span><br><span class="line">  render() {</span><br><span class="line">    <span class="comment">// Link 路由跳转</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">          &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">        &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h1&gt;home&lt;/</span>h1&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  }</span></span><br><span class="line"><span class="regexp">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>3.about组件</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//about.js</span></span><br><span class="line"><span class="keyword">import</span> React, { Component } <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> { Link } <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">About</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>{</span><br><span class="line">  render() {</span><br><span class="line">    <span class="comment">// Link 路由跳转</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">          &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">        &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h1&gt;about&lt;/</span>h1&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  }</span></span><br><span class="line"><span class="regexp">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>4.app.js中引入<code>router</code></p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, { Component } <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span>  </span>{</span><br><span class="line">  render(){</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;Router /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  }</span></span><br><span class="line"><span class="regexp">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>5.嵌套路由</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// about.js</span></span><br><span class="line"><span class="keyword">import</span> React, { Component } <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> { Link } <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">About</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>{</span><br><span class="line">  render() {</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="comment">// {this.props.children}  ==&gt; 显示嵌套路由</span></span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;ul&gt;</span><br><span class="line">          &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">          &lt;li&gt;<span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">        &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h1&gt;about&lt;/</span>h1&gt;</span><br><span class="line">        {<span class="keyword">this</span>.props.children}</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  }</span></span><br><span class="line"><span class="regexp">}</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/  router/i</span>ndex.js</span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> { BrowserRouter <span class="keyword">as</span> Router, Route, Redirect } <span class="keyword">from</span> <span class="string">'react-router-dom'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./../views/home/home'</span></span><br><span class="line"><span class="keyword">import</span> About <span class="keyword">from</span> <span class="string">'./../views/about/about'</span></span><br><span class="line"><span class="keyword">import</span> somePage <span class="keyword">from</span> <span class="string">'./../views/somePage/somePage'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">router</span>(<span class="params"></span>) </span>{</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;Router&gt;</span><br><span class="line">      &lt;Route path=<span class="string">"/home"</span> component={Home} /&gt;</span><br><span class="line">      &lt;Route path=<span class="string">"/"</span> render={</span><br><span class="line">        () =&gt; <span class="xml"><span class="tag">&lt;<span class="name">Redirect</span> <span class="attr">to</span>=<span class="string">"/home"</span> /&gt;</span>}&gt;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">Route</span>&gt;</span></span></span><br><span class="line">      &lt;Route path=<span class="string">"/about"</span> render={()=&gt;(</span><br><span class="line">          &lt;About&gt;</span><br><span class="line">            &lt;Route path=<span class="string">"/about/somePage"</span> component={somePage} /&gt;</span><br><span class="line">          &lt;<span class="regexp">/About&gt;</span></span><br><span class="line"><span class="regexp">        )}&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>Route&gt;</span><br><span class="line">    &lt;<span class="regexp">/Router&gt;</span></span><br><span class="line"><span class="regexp">  )</span></span><br><span class="line"><span class="regexp">}</span></span><br><span class="line"><span class="regexp">export default router</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>参考[<a href="https://segmentfault.com/a/1190000016421036]" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016421036]</a></li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light" target="">赞赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://yoursite.com/2019/11/11/React-Router%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_blank" rel="external">http://yoursite.com/2019/11/11/React-Router%E7%9A%84%E4%BD%BF%E7%94%A8/</a>
+                </p>
+                <footer><cite><a href="http://yoursite.com">@Damao Bolg</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2019/11/11/React-GGEditor%E6%90%AD%E5%BB%BA%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9B%BE%E7%BC%96%E8%BE%91%E5%99%A8%E9%A1%B9%E7%9B%AE/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">React+GGEditor搭建可视化图编辑器项目</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2019/11/08/Hexo-Github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hexo+Github搭建博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="React-Router的使用" data-title="React-Router的使用" data-url="http://yoursite.com/2019/11/11/React-Router%E7%9A%84%E4%BD%BF%E7%94%A8/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;" target=""><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Thanks~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "React-Router的使用",
+    pic: "https://avatars.githubusercontent.com/damao2250",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/2019/11/11/React-Router%E7%9A%84%E4%BD%BF%E7%94%A8/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

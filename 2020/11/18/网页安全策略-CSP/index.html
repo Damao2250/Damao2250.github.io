@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>网页安全策略---CSP | Damao Bolg | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="CSP">
+  <meta name="description" content="Content Security Policy （网页安全策略或内容安全策略，简称 CSP)，主要用于检测并削弱某些特定类型的攻击，如跨站脚本(xss)、数据注入攻击等，相当于是让浏览器自动禁止外部注入恶意脚本  CSP的实质就是白名单制度，开发者明确告诉客户端，哪些外部资源可以加载和执行，它的实现和执行全部由浏览器完成，开发者只需要提供配置  两种启用CSP方式  ①通过HTTP头部信息的Con">
+<meta name="keywords" content="CSP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网页安全策略---CSP">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;11&#x2F;18&#x2F;%E7%BD%91%E9%A1%B5%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-CSP&#x2F;index.html">
+<meta property="og:site_name" content="Damao Bolg">
+<meta property="og:description" content="Content Security Policy （网页安全策略或内容安全策略，简称 CSP)，主要用于检测并削弱某些特定类型的攻击，如跨站脚本(xss)、数据注入攻击等，相当于是让浏览器自动禁止外部注入恶意脚本  CSP的实质就是白名单制度，开发者明确告诉客户端，哪些外部资源可以加载和执行，它的实现和执行全部由浏览器完成，开发者只需要提供配置  两种启用CSP方式  ①通过HTTP头部信息的Con">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-11-18T03:33:17.497Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Damao Bolg" type="application/atom+xml">
+  
+  <meta name="summary" content="复制粘贴攻城狮">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off" target="">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="https://github.com/Damao2250" target="_blank" rel="noopener" class="avatar"><img src="https://avatars.githubusercontent.com/damao2250"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Damao</h5>
+        <a href="mailto:damao2250@gmail.com" target="_blank" rel="noopener" title="damao2250@gmail.com" class="mail">damao2250@gmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/Damao2250" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://weibo.com/damao2250" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Damao Bolg &copy; 2020</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">网页安全策略---CSP</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search" target="">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share" target="">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">网页安全策略---CSP</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2020-11-18T02:37:30.000Z" itemprop="datePublished" class="page-time">
+  2020-11-18
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-网页安全策略-CSP" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSP/" rel="tag">CSP</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p><code>Content Security Policy</code> （网页安全策略或内容安全策略，简称 <code>CSP</code>)，主要用于检测并削弱某些特定类型的攻击，如跨站脚本(<code>xss</code>)、数据注入攻击等，相当于是让浏览器自动禁止外部注入恶意脚本</p>
+<ul>
+<li><p><code>CSP</code>的实质就是白名单制度，开发者明确告诉客户端，哪些外部资源可以加载和执行，它的实现和执行全部由浏览器完成，开发者只需要提供配置</p>
+</li>
+<li><p>两种启用<code>CSP</code>方式</p>
+<ul>
+<li>①通过HTTP头部信息的<code>Content-Security-Policy</code>字段添加指定策略<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: script-src <span class="string">'self'</span>; boject-src <span class="string">'none'</span>; style-src cdn.example.org third-party.org; child-src https:</span><br></pre></td></tr></tbody></table></figure></li>
+<li>②通过网页的<code>&lt;meta&gt;</code>标签<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">'Content-Security-Policy'</span> <span class="attr">content</span>=<span class="string">"script-src 'self'; boject-src 'none'; style-src cdn.example.org third-party.org; child-src https:"</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>以上代码的配置信息：</li>
+</ul>
+<ul>
+<li>脚本：只信任当前域名</li>
+<li><object>标签，不信任任何URL，即不加载任何资源
+<li>样式表：只信任<code>cdn.example.org third-party.org</code></li>
+<li>框架(frame)：必须使用<code>HTTPS</code>协议加载</li>
+<li>其他资源：没有限制</li>
+
+
+<li><p>资源限制选项</p>
+<ul>
+<li><code>script-src</code>: 外部脚本</li>
+<li><code>style-src</code>: 样式表</li>
+<li><code>img-src</code>: 图片 </li>
+<li><code>media-src</code>: 媒体文件</li>
+<li><code>font-src</code>: 字体文件</li>
+<li><code>object-src</code>: 插件，如Flash</li>
+<li><code>child-src</code>: 框架</li>
+<li><code>frame-ancestors</code>: 嵌入的外部资源，如：frame、iframe</li>
+<li><code>content-src</code>: HTTP连接（通过XHR、WebSockets）</li>
+<li><code>worker-src</code>: worker脚本</li>
+<li><code>manifest-src</code>: manifest文件</li>
+</ul>
+</li>
+<li><p><code>default-src</code> 选项</p>
+<ul>
+<li>用来限制各个选项的默认值<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Security-Policy: <span class="keyword">default</span>-src <span class="string">'self'</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>以上代码限制所有资源只能从当前域名加载</li>
+</ul>
+</li>
+<li><p>参考</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2016/09/csp.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/09/csp.html</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP</a></li>
+</ul>
+</li>
+
+</object></li></ul></li></ul><script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light" target="">赞赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://yoursite.com/2020/11/18/%E7%BD%91%E9%A1%B5%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-CSP/" target="_blank" rel="external">http://yoursite.com/2020/11/18/%E7%BD%91%E9%A1%B5%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-CSP/</a>
+                </p>
+                <footer><cite><a href="http://yoursite.com">@Damao Bolg</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2020/11/19/%E4%B8%80%E4%BB%BD%E5%8F%82%E8%80%83%E7%94%A8%E7%9A%84axios%E5%B0%81%E8%A3%85/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">一份参考用的axios封装</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2020/11/12/Github%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Github搜索技巧</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="网页安全策略-CSP" data-title="网页安全策略---CSP" data-url="http://yoursite.com/2020/11/18/%E7%BD%91%E9%A1%B5%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-CSP/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;" target=""><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Thanks~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "网页安全策略---CSP",
+    pic: "https://avatars.githubusercontent.com/damao2250",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/2020/11/18/%E7%BD%91%E9%A1%B5%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5-CSP/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>01-React-Native-Windows之起步 | Damao Bolg | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="React Native for Windows">
+  <meta name="description" content="React Native for Windows 0.61 起步系统要求 Windows 10  开发依赖 安装  Visual Studio 2019 安装 Visual Studio 2019 的这些选项 工作负载 -&amp;gt; 通用 Windows 平台开发 -&amp;gt; 勾选可选项里的 “C++ (v141)通用 Windows 平台工具” 工作负载 -&amp;gt; 使用 C++ 的桌面开发  单">
+<meta name="keywords" content="React Native for Windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01-React-Native-Windows之起步">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;05&#x2F;14&#x2F;01-React-Native-Windows%E4%B9%8B%E8%B5%B7%E6%AD%A5&#x2F;index.html">
+<meta property="og:site_name" content="Damao Bolg">
+<meta property="og:description" content="React Native for Windows 0.61 起步系统要求 Windows 10  开发依赖 安装  Visual Studio 2019 安装 Visual Studio 2019 的这些选项 工作负载 -&amp;gt; 通用 Windows 平台开发 -&amp;gt; 勾选可选项里的 “C++ (v141)通用 Windows 平台工具” 工作负载 -&amp;gt; 使用 C++ 的桌面开发  单">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;welcome-react-native-for-windows.png">
+<meta property="og:updated_time" content="2020-05-15T06:02:49.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;Damao2250&#x2F;FileTransfer&#x2F;master&#x2F;welcome-react-native-for-windows.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Damao Bolg" type="application/atom+xml">
+  
+  <meta name="summary" content="复制粘贴攻城狮">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off" target="">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="https://github.com/Damao2250" target="_blank" rel="noopener" class="avatar"><img src="https://avatars.githubusercontent.com/damao2250"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Damao</h5>
+        <a href="mailto:damao2250@gmail.com" target="_blank" rel="noopener" title="damao2250@gmail.com" class="mail">damao2250@gmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/Damao2250" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://weibo.com/damao2250" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Damao Bolg &copy; 2020</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">01-React-Native-Windows之起步</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search" target="">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share" target="">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">01-React-Native-Windows之起步</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2020-05-14T11:53:55.000Z" itemprop="datePublished" class="page-time">
+  2020-05-14
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-01-React-Native-Windows之起步" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React-Native-for-Windows/" rel="tag">React Native for Windows</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#React-Native-for-Windows-0-61-起步"><span class="post-toc-number">1.</span> <span class="post-toc-text">React Native for Windows 0.61 起步</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#系统要求"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">系统要求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开发依赖"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">开发依赖</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-React-Native-的开发依赖"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">安装 React Native 的开发依赖</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#故障排除"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">故障排除</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-React-Native-for-Windows"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">安装 React Native for Windows</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-Windows-扩展"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">安装 Windows 扩展</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#运行-React-Native-Windows-应用"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">运行 React Native Windows 应用</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="React-Native-for-Windows-0-61-起步"><a href="#React-Native-for-Windows-0-61-起步" class="headerlink" title="React Native for Windows 0.61 起步"></a>React Native for Windows 0.61 起步</h1><h2 id="系统要求"><a href="#系统要求" class="headerlink" title="系统要求"></a>系统要求</h2><ul>
+<li>Windows 10</li>
+</ul>
+<h2 id="开发依赖"><a href="#开发依赖" class="headerlink" title="开发依赖"></a>开发依赖</h2><ul>
+<li>安装  <a href="https://www.visualstudio.com/downloads" target="_blank" rel="noopener">Visual Studio 2019</a></li>
+<li>安装 <code>Visual Studio 2019</code> 的这些选项<ul>
+<li>工作负载 -&gt; 通用 Windows 平台开发 -&gt; 勾选可选项里的 “C++ (v141)通用 Windows 平台工具”</li>
+<li>工作负载 -&gt; 使用 C++ 的桌面开发 </li>
+<li>单个组件 -&gt; 编译器、生成工具和运行时 -&gt; MSVC v141 – VS 2017 C++ x64/x86 生成工具(v14.16)</li>
+<li>单个组件 -&gt; 编译器、生成工具和运行时 -&gt; MSVC v141 – VS 2017 C++ ARM64 生成工具(v14.16)</li>
+<li>单个组件 -&gt; 开发活动 -&gt; Node.js 开发工具</li>
+<li>预计安装所需空间大小：21.64GB</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装-React-Native-的开发依赖"><a href="#安装-React-Native-的开发依赖" class="headerlink" title="安装 React Native 的开发依赖"></a>安装 React Native 的开发依赖</h2><ul>
+<li>安装标准的 <a href="https://reactnative.dev/docs/getting-started#node-python2-jdk" target="_blank" rel="noopener">React Native</a> 开发依赖，<a href="https://reactnative.cn/docs/getting-started" target="_blank" rel="noopener">中文文档</a></li>
+<li>安装 <a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">node.js</a>，确保node的版本是12.9.1或是更高，12.9.1是构建 React Native for Windows 推荐的版本</li>
+<li>安装 <a href="https://www.google.com/chrome/" target="_blank" rel="noopener">Chrome</a>，用于调式JS,可选</li>
+<li>安装 <a href="https://yarnpkg.com/en/docs/install" target="_blank" rel="noopener">Yarn</a>，可选安装，如果你想为 <a href="https://github.com/microsoft/react-native-windows" target="_blank" rel="noopener">react-native-windows</a> 添砖加瓦则续安装</li>
+</ul>
+<h2 id="故障排除"><a href="#故障排除" class="headerlink" title="故障排除"></a>故障排除</h2><ul>
+<li>如果在运行应用程序后，打包程序未更新或应用程序未显示 <code>React Native</code> 内容-请关闭打包程序命令提示符窗口，并确保该应用程序已打开，然后运行 <code>yarn start</code> 并再次从 <code>Visual Studio</code> 运行该应用程序。</li>
+<li>如果您在UWP应用程序窗口中看到带有错误消息：的红色错误框，请 <code>ERROR: Instance failed to start. A connection with the server cannot be established</code> 确保您正在使用打包 <code>yarn start</code> 程序运行，然后再次运行该应用程序。</li>
+</ul>
+<h2 id="安装-React-Native-for-Windows"><a href="#安装-React-Native-for-Windows" class="headerlink" title="安装 React Native for Windows"></a>安装 React Native for Windows</h2><ul>
+<li>在需要创建项目的目录下面执行 <code>react-native init</code><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npx react-native init &lt;project name&gt; --version ^<span class="number">0.61</span><span class="number">.5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// npx 还能避免全局安装的模块,安装模块时会下载到一个临时目录，使用以后再删除</span></span><br><span class="line"><span class="comment">// --version ^0.61.5 指定版本号</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h2 id="安装-Windows-扩展"><a href="#安装-Windows-扩展" class="headerlink" title="安装 Windows 扩展"></a>安装 Windows 扩展</h2><ul>
+<li>安装 React Native for Windows 软件包<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd &lt;project name&gt; </span><br><span class="line">npx react-native-windows-init --overwrite</span><br><span class="line"></span><br><span class="line"><span class="comment">// 切换到创建项目的目录下面然后安装</span></span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+</ul>
+<h2 id="运行-React-Native-Windows-应用"><a href="#运行-React-Native-Windows-应用" class="headerlink" title="运行 React Native Windows 应用"></a>运行 React Native Windows 应用</h2><ul>
+<li>运行前确保浏览器已经打开</li>
+<li>在 VS Code 中运行<ul>
+<li>安装 VS Code 插件： <code>React Native Tools</code></li>
+<li>在应用程根目录创建文件 <code>.vscode/launch.json</code>，并粘贴如下内容<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">  <span class="string">"version"</span>: <span class="string">"0.2.0"</span>,</span><br><span class="line">  <span class="string">"configurations"</span>: [</span><br><span class="line">      {</span><br><span class="line">          <span class="string">"name"</span>: <span class="string">"Debug Windows"</span>,</span><br><span class="line">          <span class="string">"cwd"</span>: <span class="string">"${workspaceFolder}"</span>,</span><br><span class="line">          <span class="string">"type"</span>: <span class="string">"reactnative"</span>,</span><br><span class="line">          <span class="string">"request"</span>: <span class="string">"launch"</span>,</span><br><span class="line">          <span class="string">"platform"</span>: <span class="string">"windows"</span></span><br><span class="line">      }</span><br><span class="line">  ]</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<li>运行项目<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx react-native run-windows</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一次启动会有点慢，安装后会淡出一个命令提示符窗口，请按回车以继续</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>按 “r” 键可以重载应用</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>在 Visual Studio 中运行<ul>
+<li>在 Visual Studio 中打开解决方案文件（如：”\windowsAppDemo\windows\windowsAppDemo.sln”）</li>
+<li>如果 Visual Studio 显示无法加载，可以关闭 Visual Studio 然后重新打开</li>
+<li>在项目目录项目下打开<code>命令行提示符</code>运行<code>yarn start</code></li>
+<li>在 Visual Studio 中的菜单下面选 Debug -&gt; x64 -&gt; 本地计算机（点击绿色三角按钮启动）</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Damao2250/FileTransfer/master/welcome-react-native-for-windows.png" alt="应用运行成功截图"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light" target="">赞赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://yoursite.com/2020/05/14/01-React-Native-Windows%E4%B9%8B%E8%B5%B7%E6%AD%A5/" target="_blank" rel="external">http://yoursite.com/2020/05/14/01-React-Native-Windows%E4%B9%8B%E8%B5%B7%E6%AD%A5/</a>
+                </p>
+                <footer><cite><a href="http://yoursite.com">@Damao Bolg</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2020/05/19/Vue%E7%AE%80%E4%BB%8B/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue简介</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2020/05/04/%E6%8A%BD%E8%B1%A1%E7%BB%84%E4%BB%B6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">抽象组件实现节流/防抖</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="01-React-Native-Windows之起步" data-title="01-React-Native-Windows之起步" data-url="http://yoursite.com/2020/05/14/01-React-Native-Windows%E4%B9%8B%E8%B5%B7%E6%AD%A5/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;" target=""><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Thanks~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "01-React-Native-Windows之起步",
+    pic: "https://avatars.githubusercontent.com/damao2250",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/2020/05/14/01-React-Native-Windows%E4%B9%8B%E8%B5%B7%E6%AD%A5/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

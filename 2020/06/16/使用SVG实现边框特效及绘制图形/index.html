@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用SVG实现边框特效及绘制图形 | Damao Bolg | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="SVG">
+  <meta name="description" content="SVG SVG 指可伸缩矢量图形 (Scalable Vector Graphics) SVG 用来定义用于网络的基于矢量的图形 SVG 使用 XML 格式定义图形 SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失 SVG 是万维网联盟的标准 SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体  SVG绘制矩形和圆角矩形– rect:绘制矩形标签; x:矩形的左侧位置,定">
+<meta name="keywords" content="SVG">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SVG实现边框特效及绘制图形">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;16&#x2F;%E4%BD%BF%E7%94%A8SVG%E5%AE%9E%E7%8E%B0%E8%BE%B9%E6%A1%86%E7%89%B9%E6%95%88%E5%8F%8A%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2&#x2F;index.html">
+<meta property="og:site_name" content="Damao Bolg">
+<meta property="og:description" content="SVG SVG 指可伸缩矢量图形 (Scalable Vector Graphics) SVG 用来定义用于网络的基于矢量的图形 SVG 使用 XML 格式定义图形 SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失 SVG 是万维网联盟的标准 SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体  SVG绘制矩形和圆角矩形– rect:绘制矩形标签; x:矩形的左侧位置,定">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-06-16T07:21:24.040Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Damao Bolg" type="application/atom+xml">
+  
+  <meta name="summary" content="复制粘贴攻城狮">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off" target="">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="https://github.com/Damao2250" target="_blank" rel="noopener" class="avatar"><img src="https://avatars.githubusercontent.com/damao2250"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">Damao</h5>
+        <a href="mailto:damao2250@gmail.com" target="_blank" rel="noopener" title="damao2250@gmail.com" class="mail">damao2250@gmail.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
+      
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              主页
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              Archives
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/Damao2250" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              Github
+            </a>
+          </li>
+      
+          <li class="waves-block waves-effect">
+            <a href="https://weibo.com/damao2250" target="_blank" >
+              <i class="icon icon-lg icon-weibo"></i>
+              Weibo
+            </a>
+          </li>
+      
+    </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Damao Bolg &copy; 2020</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用SVG实现边框特效及绘制图形</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search" target="">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share" target="">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">使用SVG实现边框特效及绘制图形</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2020-06-16T06:58:41.000Z" itemprop="datePublished" class="page-time">
+  2020-06-16
+</time>
+
+
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-使用SVG实现边框特效及绘制图形" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVG/" rel="tag">SVG</a></li></ul>
+
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+            
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SVG"><span class="post-toc-number">1.</span> <span class="post-toc-text">SVG</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SVG绘制矩形和圆角矩形–"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">SVG绘制矩形和圆角矩形–</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SVG绘制椭圆–"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">SVG绘制椭圆–</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SVG绘制直线–"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">SVG绘制直线–</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#demo"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">demo</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整代码"><span class="post-toc-number">2.</span> <span class="post-toc-text">完整代码</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><ul>
+<li>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</li>
+<li>SVG 用来定义用于网络的基于矢量的图形</li>
+<li>SVG 使用 XML 格式定义图形</li>
+<li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失</li>
+<li>SVG 是万维网联盟的标准</li>
+<li>SVG 与诸如 DOM 和 XSL 之类的 W3C 标准是一个整体</li>
+</ul>
+<h3 id="SVG绘制矩形和圆角矩形–"><a href="#SVG绘制矩形和圆角矩形–" class="headerlink" title="SVG绘制矩形和圆角矩形–"></a>SVG绘制矩形和圆角矩形–<rect></rect></h3><ul>
+<li>rect:绘制矩形标签;</li>
+<li>x:矩形的左侧位置,定义矩形到<code>&lt;svg&gt;</code>左侧的距离是Xpx;</li>
+<li>y:矩形的顶端位置,定义矩形到<code>&lt;svg&gt;</code>顶部的距离是Ypx;</li>
+<li>rx/ry:是圆角半径;</li>
+<li>style:</li>
+<li>fill:填充颜色;</li>
+<li>fill-opacity:填充颜色透明度;</li>
+<li>stroke:描边颜色;</li>
+<li>stroke-Width:描边宽度;</li>
+<li>stroke-opacity:描边透明度;</li>
+</ul>
+<h3 id="SVG绘制椭圆–"><a href="#SVG绘制椭圆–" class="headerlink" title="SVG绘制椭圆–"></a>SVG绘制椭圆–<ellipse></ellipse></h3><ul>
+<li>ellipse:绘制椭圆标签;</li>
+<li>cx:定义椭圆中心的X坐标;</li>
+<li>cy:定义椭圆中心的Y坐标;</li>
+<li>rx:定义椭圆的水平半径;</li>
+<li>ry:定义椭圆的垂直半径;</li>
+</ul>
+<h3 id="SVG绘制直线–"><a href="#SVG绘制直线–" class="headerlink" title="SVG绘制直线–"></a>SVG绘制直线–<line></line></h3><ul>
+<li>line:绘制直线标签;</li>
+<li>x1:直线起始点X坐标;</li>
+<li>y1:直线起始点Y坐标;</li>
+<li>x2:直线终止点X坐标;</li>
+<li>y2:直线终止点Y坐标;</li>
+</ul>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><style>
+    .svg-content{
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #696969;
+    }
+
+    .svg-main {
+      width: 200px;
+    }
+
+    svg {
+      width: 200px;
+      height: 50px;
+      margin-bottom: 20px;
+      background: #444;
+      cursor: default;
+    }
+
+    rect#shape {
+      fill: transparent;
+      stroke: white;
+      stroke-width: 6px;
+      stroke-dasharray: 0 500;
+      stroke-dashoffset: 0;
+      transition: 0.5s ease;
+    }
+
+    svg:hover #shape {
+      stroke-dasharray: 500 0;
+      stroke-width: 6px;
+      stroke: rgb(32, 213, 226);
+    }
+
+    @keyframes dong {
+      100% {
+        stroke-dasharray: 500 0;
+        stroke-width: 6px;
+        stroke: white;
+      }
+    }
+
+    rect#one {
+      fill: transparent;
+      stroke: yellowgreen;
+      stroke-width: 6px;
+      stroke-dasharray: 0 500;
+      stroke-dashoffset: 250;
+      animation: dong1 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes dong1 {
+      100% {
+        stroke-dasharray: 500 0;
+        stroke-width: 6px;
+        stroke: greenyellow;
+      }
+    }
+
+    rect#two {
+      fill: transparent;
+      stroke: rgb(233, 43, 43);
+      stroke-width: 6px;
+      stroke-dasharray: 200 300;
+      stroke-dashoffset: 250;
+      animation: dong2 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes dong2 {
+      100% {
+        stroke-dasharray: 200 0;
+        stroke-width: 6px;
+        stroke: rgb(233, 43, 43);
+      }
+    }
+
+    rect#three {
+      fill: transparent;
+      stroke: rgb(233, 220, 43);
+      stroke-width: 6px;
+      stroke-dasharray: 50 450;
+      stroke-dashoffset: 50;
+      animation: dong3 2s ease-in-out infinite alternate;
+    }
+
+    rect#threes {
+      fill: transparent;
+      stroke: rgb(233, 103, 43);
+      stroke-width: 6px;
+      stroke-dasharray: 50 450;
+      stroke-dashoffset: -200;
+      animation: dong3 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes dong3 {
+      100% {
+        stroke-dasharray: 500 0;
+        stroke-width: 6px;
+        stroke: rgb(233, 220, 43);
+      }
+    }
+
+    rect#four {
+      fill: transparent;
+      stroke: skyblue;
+      stroke-width: 6px;
+      stroke-dasharray: 50 450;
+      stroke-dashoffset: 150;
+      transition: 0.5s ease;
+    }
+
+    svg:hover #four {
+      stroke-dasharray: 250 250;
+    }
+
+    rect#fours {
+      fill: transparent;
+      stroke: blue;
+      stroke-width: 6px;
+      stroke-dasharray: 50 450;
+      stroke-dashoffset: 200;
+      transition: 0.5s ease;
+    }
+
+    svg:hover #fours {
+      stroke-dasharray: 250 50;
+    }
+
+    text {
+      fill: white;
+      font-size: 30px;
+      transition: 0.5s linear;
+    }
+
+    svg:hover text {
+      fill: rgb(30, 129, 223);
+    }
+
+    svg:hover .four {
+      fill: rgb(231, 105, 21);
+    }
+
+    #five {
+      fill: transparent;
+      stroke: rgb(255, 0, 179);
+      stroke-width: 6px;
+      stroke-dasharray: 50 400;
+      stroke-dashoffset: -75;
+      stroke-opacity: 0;
+      animation: dong5 1s linear infinite alternate;
+    }
+
+    @keyframes dong5 {
+      100% {
+        stroke-opacity: 1;
+        stroke: rgb(192, 44, 180);
+        stroke-dasharray: 50 20;
+      }
+    }
+
+    #six {
+      fill: transparent;
+      stroke: rgb(0, 255, 21);
+      stroke-width: 6px;
+      stroke-dasharray: 50 400;
+      stroke-dashoffset: 50;
+      animation: dong6 1s linear infinite alternate;
+    }
+
+    @keyframes dong6 {
+      100% {
+        stroke: rgb(231, 250, 59);
+        stroke-dasharray: 20 1;
+      }
+    }
+
+    rect#svg-border {
+      fill: transparent;
+      stroke: white;
+      stroke-width: 6px;
+      stroke-dasharray: 0, 200, 0, 50, 0, 200, 0, 50;
+      stroke-dashoffset: 0;
+      transition: all .3s ease;
+    }
+
+    svg:hover #svg-border {
+      stroke-dasharray: 200, 0, 50, 0, 200, 0, 50, 0;
+      stroke-width: 6px;
+      stroke: #58bc58;
+    }
+  </style>
+
+<div class="svg-content">
+  <main class="svg-main">
+    <svg>
+      <rect id="shape" height="50" width="200"></rect>
+      <text x="70" y="35"><a href="###">百度</a></text>
+    </svg>
+    <svg>
+      <rect id="one" height="50" width="200"></rect>
+    </svg>
+    <svg>
+      <rect id="two" height="50" width="200"></rect>
+    </svg>
+    <svg>
+      <rect id="three" height="50" width="200"></rect>
+      <rect id="threes" height="50" width="200"></rect>
+    </svg>
+    <svg>
+      <rect id="fours" height="50" width="200"></rect>
+      <rect id="four" height="50" width="200"></rect>
+      <text class="four" x="70" y="35"><a href="###">淘宝</a></text>
+    </svg>
+    <svg>
+      <rect id="five" height="50" width="200"></rect>
+    </svg>
+    <svg>
+      <rect id="six" height="50" width="200"></rect>
+    </svg>
+    <svg>
+      <rect id="svg-border" height="50" width="200"></rect>
+      <text x="55" y="35"><a href="###">四边框</a></text>
+    </svg>
+    <svg>
+      <circle cx="100" cy="25" r="20" stroke="orange" stroke-width="6" fill="#ff5"></circle>
+    </svg>
+    <svg>
+      <rect x="25" y="10" width="150" height="30" style="fill:#ccc; stroke:orange; stroke-width:5px;"></rect>
+    </svg>
+    <svg>
+      <rect x="25" y="10" rx="15" ry="15" width="150" height="30" style="fill:#ccc; stroke:orange; stroke-width:5px; stroke-opacity:.5; fill-opacity:.9;"></rect>
+    </svg>
+    <svg> 
+      <line x1="5" y1="5" x2="190" y2="40" style="stroke:rgba(255, 0, 0, .5); stroke-width:5px;"></line> 
+    </svg>
+    <svg> 
+      <ellipse cx="100" cy="25" rx="50" ry="15" stroke="orange" stroke-width="5" fill="#000" fill-opacity=".5"></ellipse> 
+    </svg>
+  </main>
+</div>
+
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">    body,</span><br><span class="line">    html {</span><br><span class="line">      height: 100%;</span><br><span class="line">      display: flex;</span><br><span class="line">      justify-content: center;</span><br><span class="line">      align-items: center;</span><br><span class="line"><span class="css">      <span class="selector-tag">background</span>: <span class="selector-id">#696969</span>;</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    main {</span><br><span class="line">      width: 200px;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    svg {</span><br><span class="line">      width: 200px;</span><br><span class="line">      height: 50px;</span><br><span class="line">      margin-bottom: 20px;</span><br><span class="line"><span class="css">      <span class="selector-tag">background</span>: <span class="selector-id">#444</span>;</span></span><br><span class="line"></span><br><span class="line">      cursor: default;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#shape</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: white;</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 0 500;</span><br><span class="line">      stroke-dashoffset: 0;</span><br><span class="line"><span class="css">      <span class="selector-tag">transition</span>: 0<span class="selector-class">.5s</span> <span class="selector-tag">ease</span>;</span></span><br><span class="line">      /* animation:dong 2s ease-in-out infinite alternate;</span><br><span class="line">	*/</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">svg</span><span class="selector-pseudo">:hover</span> <span class="selector-id">#shape</span> {</span></span><br><span class="line">      stroke-dasharray: 500 0;</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke: rgb(32, 213, 226);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke-dasharray: 500 0;</span><br><span class="line">        stroke-width: 6px;</span><br><span class="line">        /* stroke-dashoffset:-250;</span><br><span class="line">	*/</span><br><span class="line">        stroke: white;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#one</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: yellowgreen;</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 0 500;</span><br><span class="line">      stroke-dashoffset: 250;</span><br><span class="line">      animation: dong1 2s ease-in-out infinite alternate;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong1 {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke-dasharray: 500 0;</span><br><span class="line">        stroke-width: 6px;</span><br><span class="line">        /* stroke-dashoffset:0;</span><br><span class="line">	*/</span><br><span class="line">        stroke: greenyellow;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#two</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: rgb(233, 43, 43);</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 200 300;</span><br><span class="line">      stroke-dashoffset: 250;</span><br><span class="line">      animation: dong2 2s ease-in-out infinite alternate;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong2 {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke-dasharray: 200 0;</span><br><span class="line">        stroke-width: 6px;</span><br><span class="line">        /* stroke-dashoffset:0;</span><br><span class="line">	*/</span><br><span class="line">        stroke: rgb(233, 43, 43);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#three</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: rgb(233, 220, 43);</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 50 450;</span><br><span class="line">      stroke-dashoffset: 50;</span><br><span class="line">      animation: dong3 2s ease-in-out infinite alternate;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#threes</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: rgb(233, 103, 43);</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 50 450;</span><br><span class="line">      stroke-dashoffset: -200;</span><br><span class="line">      animation: dong3 2s ease-in-out infinite alternate;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong3 {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke-dasharray: 500 0;</span><br><span class="line">        stroke-width: 6px;</span><br><span class="line">        /* stroke-dashoffset:-250;</span><br><span class="line">	*/</span><br><span class="line">        stroke: rgb(233, 220, 43);</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#four</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: skyblue;</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 50 450;</span><br><span class="line">      stroke-dashoffset: 150;</span><br><span class="line"><span class="css">      <span class="selector-tag">transition</span>: 0<span class="selector-class">.5s</span> <span class="selector-tag">ease</span>;</span></span><br><span class="line">      /* animation:dong4 2s ease infinite alternate;</span><br><span class="line">	*/</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">svg</span><span class="selector-pseudo">:hover</span> <span class="selector-id">#four</span> {</span></span><br><span class="line">      stroke-dasharray: 250 250;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#fours</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: blue;</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 50 450;</span><br><span class="line">      stroke-dashoffset: 200;</span><br><span class="line"><span class="css">      <span class="selector-tag">transition</span>: 0<span class="selector-class">.5s</span> <span class="selector-tag">ease</span>;</span></span><br><span class="line">      /* animation:dong4s 2s ease infinite alternate;</span><br><span class="line">	*/</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">svg</span><span class="selector-pseudo">:hover</span> <span class="selector-id">#fours</span> {</span></span><br><span class="line">      stroke-dasharray: 250 50;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong4 {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke-dasharray: 250 250;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong4s {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke-dasharray: 250 50;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    text {</span><br><span class="line">      fill: white;</span><br><span class="line">      font-size: 30px;</span><br><span class="line"><span class="css">      <span class="selector-tag">transition</span>: 0<span class="selector-class">.5s</span> <span class="selector-tag">linear</span>;</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">svg</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">text</span> {</span></span><br><span class="line">      fill: rgb(30, 129, 223);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">svg</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.four</span> {</span></span><br><span class="line">      fill: rgb(231, 105, 21);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-id">#five</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: rgb(255, 0, 179);</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 50 400;</span><br><span class="line">      stroke-dashoffset: -75;</span><br><span class="line">      stroke-opacity: 0;</span><br><span class="line">      animation: dong5 1s linear infinite alternate;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong5 {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke-opacity: 1;</span><br><span class="line">        stroke: rgb(192, 44, 180);</span><br><span class="line">        stroke-dasharray: 50 20;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-id">#six</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: rgb(0, 255, 21);</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 50 400;</span><br><span class="line">      stroke-dashoffset: 50;</span><br><span class="line">      animation: dong6 1s linear infinite alternate;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    @<span class="keyword">keyframes</span> dong6 {</span></span><br><span class="line">      100% {</span><br><span class="line">        stroke: rgb(231, 250, 59);</span><br><span class="line">        stroke-dasharray: 20 1;</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">rect</span><span class="selector-id">#svg-border</span> {</span></span><br><span class="line">      fill: transparent;</span><br><span class="line">      stroke: white;</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line">      stroke-dasharray: 0, 200, 0, 50, 0, 200, 0, 50;</span><br><span class="line">      stroke-dashoffset: 0;</span><br><span class="line"><span class="css">      <span class="selector-tag">transition</span>: <span class="selector-tag">all</span> <span class="selector-class">.3s</span> <span class="selector-tag">ease</span>;</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line"><span class="css">    <span class="selector-tag">svg</span><span class="selector-pseudo">:hover</span> <span class="selector-id">#svg-border</span> {</span></span><br><span class="line">      stroke-dasharray: 200, 0, 50, 0, 200, 0, 50, 0;</span><br><span class="line">      stroke-width: 6px;</span><br><span class="line"><span class="css">      <span class="selector-tag">stroke</span>: <span class="selector-id">#58bc58</span>;</span></span><br><span class="line">    }</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"shape"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"70"</span> <span class="attr">y</span>=<span class="string">"35"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"###"</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"one"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"two"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"three"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"threes"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"fours"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"four"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">"four"</span> <span class="attr">x</span>=<span class="string">"70"</span> <span class="attr">y</span>=<span class="string">"35"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"###"</span>&gt;</span>淘宝<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"five"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"six"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">id</span>=<span class="string">"svg-border"</span> <span class="attr">height</span>=<span class="string">"50"</span> <span class="attr">width</span>=<span class="string">"200"</span>&gt;</span><span class="tag">&lt;/<span class="name">rect</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span> <span class="attr">x</span>=<span class="string">"55"</span> <span class="attr">y</span>=<span class="string">"35"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"###"</span>&gt;</span>四边框<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"100"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">r</span>=<span class="string">"20"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">stroke-width</span>=<span class="string">"6"</span> <span class="attr">fill</span>=<span class="string">"#ff5"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"25"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">width</span>=<span class="string">"150"</span> <span class="attr">height</span>=<span class="string">"30"</span> <span class="attr">style</span>=<span class="string">"fill:#ccc; stroke:orange; stroke-width:5px;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">rect</span> <span class="attr">x</span>=<span class="string">"25"</span> <span class="attr">y</span>=<span class="string">"10"</span> <span class="attr">rx</span>=<span class="string">"15"</span> <span class="attr">ry</span>=<span class="string">"15"</span> <span class="attr">width</span>=<span class="string">"150"</span> <span class="attr">height</span>=<span class="string">"30"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"fill:#ccc; stroke:orange; stroke-width:5px; stroke-opacity:.5; fill-opacity:.9;"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span> &gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">line</span> <span class="attr">x1</span>=<span class="string">"5"</span> <span class="attr">y1</span>=<span class="string">"5"</span> <span class="attr">x2</span>=<span class="string">"190"</span> <span class="attr">y2</span>=<span class="string">"40"</span> <span class="attr">style</span>=<span class="string">"stroke:rgba(255, 0, 0, .5); stroke-width:5px;"</span> /&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">svg</span>&gt;</span> </span><br><span class="line">      <span class="tag">&lt;<span class="name">ellipse</span> <span class="attr">cx</span>=<span class="string">"100"</span> <span class="attr">cy</span>=<span class="string">"25"</span> <span class="attr">rx</span>=<span class="string">"50"</span> <span class="attr">ry</span>=<span class="string">"15"</span> <span class="attr">stroke</span>=<span class="string">"orange"</span> <span class="attr">stroke-width</span>=<span class="string">"5"</span> <span class="attr">fill</span>=<span class="string">"#000"</span> <span class="attr">fill-opacity</span>=<span class="string">".5"</span> /&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+
+            
+            <div class="post-reward">
+                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light" target="">赞赏</a>
+            </div>
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="http://yoursite.com/2020/06/16/%E4%BD%BF%E7%94%A8SVG%E5%AE%9E%E7%8E%B0%E8%BE%B9%E6%A1%86%E7%89%B9%E6%95%88%E5%8F%8A%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" target="_blank" rel="external">http://yoursite.com/2020/06/16/%E4%BD%BF%E7%94%A8SVG%E5%AE%9E%E7%8E%B0%E8%BE%B9%E6%A1%86%E7%89%B9%E6%95%88%E5%8F%8A%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/</a>
+                </p>
+                <footer><cite><a href="http://yoursite.com">@Damao Bolg</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2020/10/03/%E5%85%B3%E4%BA%8Ejs%E4%B8%AD%E5%AF%B9%E5%B0%8F%E6%95%B0%E7%9A%84%E8%AE%A1%E7%AE%97/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">关于js中对小数的计算</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/2020/06/06/%E7%94%A8Element-Ui%E5%B0%81%E8%A3%85%E4%B8%80%E4%B8%AA%E6%BB%91%E5%8A%A8%E7%BB%84%E4%BB%B6/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">用Element-Ui封装一个滑动组件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="使用SVG实现边框特效及绘制图形" data-title="使用SVG实现边框特效及绘制图形" data-url="http://yoursite.com/2020/06/16/%E4%BD%BF%E7%94%A8SVG%E5%AE%9E%E7%8E%B0%E8%BE%B9%E6%A1%86%E7%89%B9%E6%95%88%E5%8F%8A%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/index.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;" target=""><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        Thanks~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" target="_blank" rel="noopener" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "使用SVG实现边框特效及绘制图形",
+    pic: "https://avatars.githubusercontent.com/damao2250",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://yoursite.com/2020/06/16/%E4%BD%BF%E7%94%A8SVG%E5%AE%9E%E7%8E%B0%E8%BE%B9%E6%A1%86%E7%89%B9%E6%95%88%E5%8F%8A%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/index.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>
