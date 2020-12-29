@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-12-28T07:18:31.053Z</updated>
+  <updated>2020-12-29T09:16:51.693Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小程序通知推送</title>
+    <link href="http://yoursite.com/2020/12/29/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81/"/>
+    <id>http://yoursite.com/2020/12/29/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81/</id>
+    <published>2020-12-29T09:14:48.000Z</published>
+    <updated>2020-12-29T09:16:51.693Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="小程序推送通知方式（订阅消息-amp-消息模板）"><a href="#小程序推送通知方式（订阅消息-amp-消息模板）" class="headerlink" title="小程序推送通知方式（订阅消息&amp;消息模板）"></a>小程序推送通知方式（订阅消息&amp;消息模板）</h1><h2 id="小程序发送小程序的订阅消息-推送到服务通知"><a href="#小程序发送小程序的订阅消息-推送到服务通知" class="headerlink" title="小程序发送小程序的订阅消息(推送到服务通知)"></a>小程序发送小程序的订阅消息(推送到服务通知)</h2><ul><li><p>准备1：登录小程序-功能-订阅消息（未开通的，需要先开通）-从模板库中添加消息模板并获得模板ID（也可以申请消息模板）</p></li><li><p>步骤：</p><ul><li>获取下发权限 （用户发生点击行为或者发起支付回调后）— 调用接口下发订阅消息</li><li>获取<code>js_code</code></li><li>根据<code>js_code</code>获取<code>OpenId</code>和<code>UnionID</code></li><li>获取小程序<code>access_token</code></li><li>根据<code>access_token</code>调用接口下发订阅消息</li></ul></li><li><p>参考的开发文档</p><ul><li><a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/subscribe-message/wx.requestSubscribeMessage.html" target="_blank" rel="noopener">获取下发权限</a></li><li><a href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/subscribe-message/subscribeMessage.send.html" target="_blank" rel="noopener">调用接口下发订阅消息</a></li></ul></li></ul><h2 id="小程序调用公众号的消息模板-推送到微信公众号"><a href="#小程序调用公众号的消息模板-推送到微信公众号" class="headerlink" title="小程序调用公众号的消息模板(推送到微信公众号)"></a>小程序调用公众号的消息模板(推送到微信公众号)</h2><ul><li><p>准备1：注册<code>微信开放平台</code>，将<code>微信公众号</code>和<code>小程</code>序绑定到<code>微信开放平台</code>（目的：获取<code>UnionID</code>）</p></li><li><p>准备2：微信公众号添加<code>消息模板</code>功能，从模板库中添加消息模板并获得模板ID，也可以申请模板</p></li><li><p>步骤：(根据用户唯一的<code>UnionID</code>去寻找用户在公众号的<code>OpenId</code>,再根据微信公众号的<code>OpenId</code>发送通知到相应的用户)</p><ul><li>批量获取微信公众号关注的用户<code>Openid</code></li><li>根据用户<code>Openid</code>获取微信公众号关注的用户<code>UnionID</code></li><li>将微信公众号关注的用户<code>Openid</code>、<code>UnionID</code>保存到数据库</li></ul><ul><li>两种方式获取小程序用户<code>UnionID</code><ul><li>根据<code>js_code</code>获取小程序的<code>OpenId</code>和<code>UnionID</code></li><li>根据小程序的<code>OpenId</code>、<code>access_token</code>获取用户信息UserInfo，根据UserInfo的<code>encryptedData</code>字段解密出小程序的<code>UnionID</code>（不推荐）</li></ul></li></ul><ul><li>根据小程序<code>appid</code>、<code>secret</code>获取小程序<code>access_token</code></li><li>根据小程序的<code>UnionID</code>去数据库匹配用户在公众号的<code>OpenId</code></li><li>根据用户在公众号的<code>OpenId</code>、<code>access_token</code>发送消息模板到对应用户</li></ul></li><li><p>参考的开发文档</p><ul><li><p><a href="https://open.weixin.qq.com" target="_blank" rel="noopener">微信开放平台登录</a></p></li><li><p><a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信公众号登录</a></p></li><li><p><a href="https://mp.weixin.qq.com/" target="_blank" rel="noopener">微信小程序登录</a></p></li><li><p><a href="https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html" target="_blank" rel="noopener">公众号消息模板接口</a></p></li><li><p><a href="https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Receiving_event_pushes.html" target="_blank" rel="noopener">公众号关注/取消关注事件</a>：微信公众号-开发-基本配置-服务器配置-启用</p></li><li><p><a href="https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html" target="_blank" rel="noopener">服务器配置</a></p></li><li><p><a href="https://developers.weixin.qq.com/doc/offiaccount/User_Management/Getting_a_User_List.html" target="_blank" rel="noopener">公众号获取用户列表/获取OpenId</a></p></li><li><p><a href="https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId" target="_blank" rel="noopener">公众号获取用户基本信息(UnionID)</a></p></li><li><p><a href="https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Get_access_token.html" target="_blank" rel="noopener">公众号获取Access token</a></p></li><li><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/login/wx.login.html" target="_blank" rel="noopener">小程序获取js_code</a></p></li><li><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/login/auth.code2Session.html" target="_blank" rel="noopener">小程序获取OpenId和UnionID/获取code2Session</a></p></li><li><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/access-token/auth.getAccessToken.html" target="_blank" rel="noopener">小程序获取access_token</a></p></li><li><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/user-info/wx.getUserInfo.html" target="_blank" rel="noopener">小程序获取用户信息UserInfo</a></p></li><li><p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html#%E5%8A%A0%E5%AF%86%E6%95%B0%E6%8D%AE%E8%A7%A3%E5%AF%86%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">UserInfo解密算法解密</a></p></li><li><p><a href="https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#5" target="_blank" rel="noopener">公众号消息模板发送</a></p></li></ul></li></ul><h2 id="下发统一服务消息（官方不支持了）"><a href="#下发统一服务消息（官方不支持了）" class="headerlink" title="下发统一服务消息（官方不支持了）"></a>下发统一服务消息（官方不支持了）</h2><ul><li>下发小程序和公众号统一的服务消息（需要填小程序模板id和公众号模板id）</li></ul><h2 id="小程序消息模板（已废弃）"><a href="#小程序消息模板（已废弃）" class="headerlink" title="小程序消息模板（已废弃）"></a>小程序消息模板（已废弃）</h2><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;小程序推送通知方式（订阅消息-amp-消息模板）&quot;&gt;&lt;a href=&quot;#小程序推送通知方式（订阅消息-amp-消息模板）&quot; class=&quot;headerlink&quot; title=&quot;小程序推送通知方式（订阅消息&amp;amp;消息模板）&quot;&gt;&lt;/a&gt;小程序推送通知方式（订阅消息
+      
+    
+    </summary>
+    
+    
+    
+      <category term="小程序" scheme="http://yoursite.com/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>一份参考用的axios封装</title>
@@ -489,30 +513,6 @@
     
     
       <category term="项目规范" scheme="http://yoursite.com/tags/%E9%A1%B9%E7%9B%AE%E8%A7%84%E8%8C%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用git同时提交到两个远程库</title>
-    <link href="http://yoursite.com/2019/11/27/%E4%BD%BF%E7%94%A8git%E5%90%8C%E6%97%B6%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%A4%E4%B8%AA%E8%BF%9C%E7%A8%8B%E5%BA%93/"/>
-    <id>http://yoursite.com/2019/11/27/%E4%BD%BF%E7%94%A8git%E5%90%8C%E6%97%B6%E6%8F%90%E4%BA%A4%E5%88%B0%E4%B8%A4%E4%B8%AA%E8%BF%9C%E7%A8%8B%E5%BA%93/</id>
-    <published>2019-11-27T09:41:30.000Z</published>
-    <updated>2020-05-14T03:27:49.058Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="使用git同时提交到多个远程库"><a href="#使用git同时提交到多个远程库" class="headerlink" title="使用git同时提交到多个远程库"></a>使用git同时提交到多个远程库</h2><h3 id="法1"><a href="#法1" class="headerlink" title="法1"></a>法1</h3><p>1、添加第一个仓库：</p><p><code>git remote add origin https://gitlab.com/XXX/xxx.git</code></p><p>2、添加第二个仓库：</p><p><code>git remote set-url --add https://github.com/XXX/xxx.git</code></p><ul><li>如果还有其他仓库，就以此方式继续添加</li></ul><p>3、提交</p><p><code>git push origin --all</code></p><p>or</p><p><code>git push</code></p><p>==================================================================</p><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// tips：</span></span><br><span class="line"><span class="comment">// 打开.git/config，可以看到这样的配置：</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">`[remote "origin"]</span></span><br><span class="line"><span class="string">  url = https://gitlab.com/XXX/xxx.git</span></span><br><span class="line"><span class="string">  fetch = +refs/heads/*:refs/remotes/origin/*</span></span><br><span class="line"><span class="string">  url = https://github.com/XXX/xxx.git`</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 刚才的命令其实就是添加了这些配置,也可以不用命令行，可以直接编辑该文件，添加对应的url即可</span></span><br></pre></td></tr></tbody></table></figure><h3 id="法2"><a href="#法2" class="headerlink" title="法2"></a>法2</h3><ol><li>直接添加另一个远程仓库地址<br><code>git remote add [name] [远程库地址]</code><br><code>git push [name]</code></li></ol><figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [name] 取个远程库名并连接远程地址  然后push上去      git默认的[name]为origin</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如：</span></span><br><span class="line"><span class="comment">// git remote add test https://github.com/XXX/xxx.git</span></span><br><span class="line"><span class="comment">// git push test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 但是想同步两个远程仓库必须同时push &amp;&amp; pull</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// git push origin</span></span><br><span class="line"><span class="comment">// git push test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// git pull origin</span></span><br><span class="line"><span class="comment">// git pull test</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查看.gigt中的config文件</span></span><br><span class="line"><span class="string">`[remote "origin"]</span></span><br><span class="line"><span class="string">url = https://gitlab.com/XXX/xxx.git</span></span><br><span class="line"><span class="string">fetch = +refs/heads/*:refs/remotes/origin/*</span></span><br><span class="line"><span class="string">[branch "master"]</span></span><br><span class="line"><span class="string">remote = origin</span></span><br><span class="line"><span class="string">merge = refs/heads/master</span></span><br><span class="line"><span class="string">[remote "test"]</span></span><br><span class="line"><span class="string">url = https://github.com/XXX/xxx.git</span></span><br><span class="line"><span class="string">  fetch = +refs/heads/*:refs/remotes/test/*`</span></span><br></pre></td></tr></tbody></table></figure><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;使用git同时提交到多个远程库&quot;&gt;&lt;a href=&quot;#使用git同时提交到多个远程库&quot; class=&quot;headerlink&quot; title=&quot;使用git同时提交到多个远程库&quot;&gt;&lt;/a&gt;使用git同时提交到多个远程库&lt;/h2&gt;&lt;h3 id=&quot;法1&quot;&gt;&lt;a href=&quot;
-      
-    
-    </summary>
-    
-    
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
     
   </entry>
   
